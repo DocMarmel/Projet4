@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8">
@@ -10,18 +9,17 @@
     <header>
       <?php include 'includes/navbar.php'; ?>
       <div class="content">
-
-      <?php  while ($chapters = $tickets->fetch()){ ?>
+      <?php  while($ticket = $tickets->fetch()){ ?>
           <article>
             <header>
-              <h1 class="tickets_title">Chapitre <?= $chapters['chapter'] ?>: <?= $chapters['title'] ?></h1>
-              <time><?= $chapters['date'] ?></time>
-              <p class="text"><?= $chapters['text'] ?></p>
+              <a href="controller/ticket.php?id=<?= $ticket['idChap'] ?>">
+                <h1 class="tickets_title">Chapitre <?= $ticket['chapter'] ?>: <?= $ticket['titleChap'] ?></h1>
+              </a>
+              <time><?= $ticket['dateChap'] ?></time>
             </header>
+            <p class="text"><?= $ticket['contentChap'] ?></p>
           </article>
-
           <?php } ?>
-
       </div>
     </header>
   </body>
