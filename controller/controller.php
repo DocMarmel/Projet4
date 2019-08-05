@@ -1,6 +1,6 @@
 <?php
 
-require 'model/model.php';
+require 'model/Model.php';
 
 // Affiche la liste de tous les billets
 function home(){
