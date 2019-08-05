@@ -1,25 +1,21 @@
 <?php
-require 'includes/db_connect.php';
-global $db;
 
-function createTicket(){
+require 'model/model.php';
 
+// Affiche la liste de tous les billets
+function home(){
+  $tickets = getTickets();
+  require 'view/home.php';
 }
 
-function readTicketsList(){
-  $tickets = $db->query("SELECT * FROM chapitres ORDER BY id DESC");
-
+// Affiche un seul billet
+function ticket($idTicket){
+  $ticket = getTicket($idTicket);
+  $comments = getComments($idTicket);
+  require 'view/ticket.php';
 }
 
-function readTicket($id){
-  $ticket = $db->query("SELECT * FROM chapitres WHERE id=$id");
-
-}
-
-function updateTicket(){
-
-}
-
-function deleteTicket($id){
-
+// Affiche les erreurs
+function error($msgError){
+  require 'view/error.php';
 }
