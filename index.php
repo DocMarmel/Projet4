@@ -1,6 +1,12 @@
 <?php
+
 require 'model/model.php';
 
-$tickets = getTickets();
+try {
+  $tickets = getTickets();
+  require 'view/home.php';
 
-require 'view/accueil.php';
+} catch (Exception $e) {
+  $msgError = $e->getMessage();
+  require 'view/error.php';
+}
