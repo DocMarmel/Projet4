@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Model.php';
+require_once 'model/Model.php';
 
 class Ticket extends Model{
 
@@ -12,7 +12,7 @@ class Ticket extends Model{
   }
 
   // Renvoie les informations d'un billet
-  public function getTicket($idTicket){
+  public function getTicket($idChap){
     $sql = "SELECT * FROM chapitres WHERE idChap=?";
     $ticket = $this->executeRequest($sql, array($idChap));
     if($ticket->rowCount() == 1){
