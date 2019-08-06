@@ -1,0 +1,97 @@
+/* All the page */
+body {
+  margin : 0px;
+}
+
+/* Navbar */
+.header {
+  width: 100%;
+  background: #fff;
+  color: #124191;
+  font-weight: 300;
+  font-size: 28px;
+  height: 100px;
+  display: table;
+  position: fixed;
+  z-index: 999999;
+  background-color: rgba(0,0,0,0.9);
+}
+
+/* Menu */
+.menu{
+  padding:0;
+  margin-top: 30px;
+  list-style-type:none;
+  display: table;
+  z-index: 3000;
+  display: table-cell;
+  float: right;
+}
+
+.menu li{
+  display: table-cell;
+  vertical-align: middle;
+  float:left;
+  cursor: pointer;
+}
+
+.menu li a{
+	padding:9px 20px;
+	display:inline-block;
+	color: white;
+	text-decoration:none;
+	font-size: 15px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+/* Submenu */
+.menu ul{
+	position:absolute;
+	left:-9999px;
+	top:-9999px;
+	list-style-type:none;
+}
+.menu li:hover{
+  position:relative;
+  background:#5FD367;
+}
+
+.menu li:hover ul{
+	left:0px;
+	top:30px;
+	background:#5FD367;
+	padding:0px;
+}
+
+.menu li:hover ul li a{
+	padding:5px;
+	display:block;
+	width:168px;
+	text-indent:15px;
+	background-color:#5FD367;
+}
+
+/* Logo header */
+header .logo{
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  left: 0;
+  margin: 15px 0 0 4%;
+}
+
+/* Content */
+#content{
+  padding-top: 100px;
+}
+
+/* Comment form */
+#commentContent{
+  width: 50%;
+}
+
+/* Connection */
+#form_login{
+  padding-top: 100px;
+}
