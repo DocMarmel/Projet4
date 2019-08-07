@@ -19,7 +19,7 @@ protected function executeRequest($sql, $params = null){
   // Connexion à la BDD
   private function getDb(){
     if($this->db == null){
-      $this->db = new PDO('mysql:host=localhost;dbname=blog', 'forteroche', 'J.ForterocheBlog', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+      $this->db = new PDO('mysql:host=localhost;dbname=blog', 'forteroche', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
       return $this->db;
   }
