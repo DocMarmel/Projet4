@@ -11,15 +11,15 @@
   <header>
     <h1 id="comments_title">Commentaires :</h1>
   </header>
-  <?php while($comment = $comments->fetch()){ ?>
-    <p><?= $comment['authorCom'] ?> dit :</p>
-    <p><?= $comment['contentCom'] ?></p>
-    <br>
-  <?php } ?>
-  <hr>
   <form action="index.php?action=commented" method="post">
     <input id="author" name="author" type="text" placeholder="Votre pseudo" required><br>
     <textarea id="commentContent" name="content" rows="4" placeholder="Votre commentaire" required></textarea><br>
     <input type="hidden" name="id" value="<?= $ticket['idChap'] ?>">
     <input type="submit" value="Commenter">
   </form>
+  <br>
+  <?php while($comment = $comments->fetch()){ ?>
+    <p><?= $comment['dateCom'] ?></p>
+    <p><b><?= $comment['authorCom'] ?> : </b><?= $comment['contentCom'] ?></p>
+    <br>
+  <?php } ?>
