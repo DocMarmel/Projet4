@@ -2,16 +2,22 @@
 
 require_once 'controller/ControllerHome.php';
 require_once 'controller/ControllerTicket.php';
+require_once 'controller/ControllerConnection.php';
+require_once 'controller/ControllerAdmin.php';
 require_once 'view/View.php';
 
 class Router{
 
   private $ctrlHome;
   private $ctrlTicket;
+  private $ctrlConnection;
+  private $ctrlAdmin;
 
   public function __construct(){
     $this->ctrlHome = new ControllerHome();
     $this->ctrlTicket = new ControllerTicket();
+    $this->ctrlConnection = new ControllerConnection();
+    $this->ctrlAdmin = new ControllerAdmin();
   }
 
 // Traite une requête entrante
@@ -31,8 +37,21 @@ class Router{
           $contentCom = $this->getParameter($_POST, 'content');
           $idChap = $this->getParameter($_POST, 'id');
           $this->ctrlTicket->commented($authorCom, $contentCom, $idChap);
+        }elseif($_GET['action'] == 'connection'){
+          $this->ctrlConnection->connection($pseudo, $passwd);
+        }elseif($_GET['action'] == 'admin'){
+          $id = intval($this->getParameter($_GET, 'id'));
+          if($id != 0){
+            $pseudo = $this->getParameter($_POST, 'pseudo');
+            $passwd = $this->getParameter($_POST, 'passwd');
+            $this->ctrlAdmin->adminPage($pseudo, $passwd);
+          }else{
+            throw new Exception("Identifiant de l'utisateur non valide");
+          }
+        }elseif($_GET['action'] == 'deconnexion'){
+          $this->ctrlConnection->deconnexion();
         }else{
-            throw new Exception("Action non valide");
+          throw new Exception("Action non valide");
         }
       }else{
         $this->ctrlHome->home();
