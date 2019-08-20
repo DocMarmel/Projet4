@@ -50,6 +50,19 @@ class Router{
           }
         }elseif($_GET['action'] == 'deconnexion'){
           $this->ctrlConnection->deconnexion();
+        }elseif($_GET['action'] == 'addchapter'){
+          $this->ctrlAdmin->addChapter();
+        }elseif($_GET['action'] == 'acceptcom'){
+          $idCom = $this->getParameter($_POST, 'idCom');
+          $this->ctrlAdmin->acceptCom($idCom);
+        }elseif($_GET['action'] == 'deletecom'){
+          $idCom = $this->getParameter($_POST, 'idCom');
+          $this->ctrlAdmin->deleteCom($idCom);
+        }elseif($_GET['action'] == 'deletechap'){
+          $idChap = $this->getParameter($_POST, 'idChap');
+          $this->ctrlAdmin->deleteChap($idChap);
+        }elseif($_GET['action'] == 'editchap'){
+
         }else{
           throw new Exception("Action non valide");
         }
