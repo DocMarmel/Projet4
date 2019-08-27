@@ -3,7 +3,7 @@
 
 <h1>Page d'administration</h1>
 
-<h2>Bienvenue <?php $_SESSION['pseudo']; ?></h2>
+<h2>Bienvenue <?= $_SESSION['pseudo']; ?></h2>
 
 <a href="index.php?action=addchapter">Ajouter un chapitre</a>
 
@@ -50,6 +50,7 @@
       <th>Titre</th>
       <th>Contenu</th>
       <th>Date</th>
+      <th>Date de modification</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -60,10 +61,11 @@
       <th><?= $ticket['titleChap'] ?></th>
       <th><?= substr($ticket['contentChap'], 0, 150); ?></th>
       <th><?= $ticket['dateChap'] ?></th>
+      <th><?= $ticket['dateChapUpdate'] ?></th>
       <th>
         <form class="formAdmin" method="post">
           <input type="hidden" name="idChap" value="<?= $ticket['idChap'] ?>">
-          <input type="submit" name="editChap" value="Modifier">
+          <input type="submit" formaction="index.php?action=updatechapter&idchap=<?= $ticket['idChap'] ?>" name="editChap" value="Modifier">
           <input type="submit" formaction="index.php?action=deletechap" name="deleteChap" value="Supprimer">
         </form>
       </th>
@@ -72,4 +74,3 @@
   <?php } ?>
 </table>
 <br><br>
-<a href="index.php?action=deconnexion">Se déconnecter</a>
