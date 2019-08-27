@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once 'model/Model.php';
 
@@ -14,9 +15,14 @@ class Admin extends Model{
     }
   }
 
-  public function addChapter($chapter, $titleChap, $contentChap){
+  public function addChapter($numberChap, $titleChap, $contentChap){
     $sql = "INSERT INTO chapitres (chapter, titleChap, contentChap) VALUES(?,?,?)";
-    $addChap = $this->executeRequest($sql, array($chapter, $titleChap, $contentChap));
+    $addChap = $this->executeRequest($sql, array($numberChap, $titleChap, $contentChap));
+  }
+
+  public function updateChap($numberChap, $titleChap, $contentChap, $idChap){
+    $sql = "UPDATE chapitres SET chapter=?, titleChap=?, dateChapUpdate=NOW(), contentChap=? WHERE idChap=?";
+    $update = $this->executeRequest($sql,array($numberChap, $titleChap, $contentChap, $idChap));
   }
 
   public function acceptCom($idCom){
@@ -31,7 +37,6 @@ class Admin extends Model{
 
   public function deleteChap($idChap){
     $sql = "DELETE FROM chapitres WHERE idChap=?";
-    // "UNION DELETE FROM commentaires WHERE idChap=?";
     $deleteChap = $this->executeRequest($sql, array($idChap));
   }
 }
