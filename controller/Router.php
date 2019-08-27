@@ -1,8 +1,9 @@
 <?php
+session_start();
 
 require_once 'controller/ControllerHome.php';
 require_once 'controller/ControllerTicket.php';
-require_once 'controller/ControllerConnection.php';
+require_once 'controller/ControllerConnexion.php';
 require_once 'controller/ControllerAdmin.php';
 require_once 'view/View.php';
 
@@ -10,13 +11,13 @@ class Router{
 
   private $ctrlHome;
   private $ctrlTicket;
-  private $ctrlConnection;
+  private $ctrlConnexion;
   private $ctrlAdmin;
 
   public function __construct(){
     $this->ctrlHome = new ControllerHome();
     $this->ctrlTicket = new ControllerTicket();
-    $this->ctrlConnection = new ControllerConnection();
+    $this->ctrlConnexion = new ControllerConnexion();
     $this->ctrlAdmin = new ControllerAdmin();
   }
 
@@ -37,28 +38,48 @@ class Router{
           $contentCom = $this->getParameter($_POST, 'content');
           $idChap = $this->getParameter($_POST, 'id');
           $this->ctrlTicket->commented($authorCom, $contentCom, $idChap);
-        }elseif($_GET['action'] == 'connection'){
-          $this->ctrlConnection->connection($pseudo, $passwd);
+        }elseif($_GET['action'] == 'report'){
+          $idCom = $this->getParameter($_POST, 'idCom');
+          $idChap = $this->getParameter($_POST, 'idChap');
+          $this->ctrlTicket->addReport($idCom, $idChap);
+        }elseif($_GET['action'] == 'connexion'){
+          $this->ctrlConnexion->connexion();
         }elseif($_GET['action'] == 'admin'){
-          $id = intval($this->getParameter($_GET, 'id'));
-          if($id != 0){
+          if($_GET['redirect'] == 1){
             $pseudo = $this->getParameter($_POST, 'pseudo');
             $passwd = $this->getParameter($_POST, 'passwd');
-            $this->ctrlAdmin->adminPage($pseudo, $passwd);
+            $this->ctrlAdmin->redirection($pseudo, $passwd);
+          }
+          $id = intval($this->getParameter($_GET, 'id'));
+          if($id != 0 && $id == $_SESSION['id']){
+            $this->ctrlAdmin->adminPage();
           }else{
             throw new Exception("Identifiant de l'utisateur non valide");
           }
+        }elseif($_GET['action'] == 'addchapter' && isset($_SESSION['connect'])){
+          $this->ctrlAdmin->addChapterPage();
+        }elseif($_GET['action'] == 'addchap' && isset($_SESSION['connect'])){
+          $numberChap = $this->getParameter($_POST, 'numChapter');
+          $titleChap = $this->getParameter($_POST, 'chapter');
+          $contentChap = $this->getParameter($_POST, 'contentChap');
+          $this->ctrlAdmin->addChapter($numberChap, $titleChap, $contentChap);
+        }elseif($_GET['action'] == 'updatechapter' && isset($_SESSION['connect'])){
+          $this->ctrlAdmin->updatechapterPage();
+        }elseif($_GET['action'] == 'updatechap' && isset($_SESSION['connect'])){
+          $numberChap = $this->getParameter($_POST, 'numChapter');
+          $titleChap = $this->getParameter($_POST, 'chapter');
+          $contentChap = $this->getParameter($_POST, 'contentChap');
+          $idChap = $this->getParameter($_POST, 'idChap');
+          $this->ctrlAdmin->updateChapter($numberChap, $titleChap, $contentChap, $idChap);
         }elseif($_GET['action'] == 'deconnexion'){
-          $this->ctrlConnection->deconnexion();
-        }elseif($_GET['action'] == 'addchapter'){
-          $this->ctrlAdmin->addChapter();
-        }elseif($_GET['action'] == 'acceptcom'){
+          $this->ctrlConnexion->deconnexion();
+        }elseif($_GET['action'] == 'acceptcom' && isset($_SESSION['connect'])){
           $idCom = $this->getParameter($_POST, 'idCom');
           $this->ctrlAdmin->acceptCom($idCom);
-        }elseif($_GET['action'] == 'deletecom'){
+        }elseif($_GET['action'] == 'deletecom' && isset($_SESSION['connect'])){
           $idCom = $this->getParameter($_POST, 'idCom');
           $this->ctrlAdmin->deleteCom($idCom);
-        }elseif($_GET['action'] == 'deletechap'){
+        }elseif($_GET['action'] == 'deletechap' && isset($_SESSION['connect'])){
           $idChap = $this->getParameter($_POST, 'idChap');
           $this->ctrlAdmin->deleteChap($idChap);
         }elseif($_GET['action'] == 'editchap'){

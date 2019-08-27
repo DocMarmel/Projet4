@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once 'model/Admin.php';
 require_once 'model/Ticket.php';
@@ -17,33 +18,65 @@ class ControllerAdmin{
     $this->comment = new Comment();
   }
 
+
+  // Redirige vers la page admin
+  public function redirection($pseudo, $passwd){
+    $passwd = MD5($passwd);
+    $admin = $this->admin->getAdmin($pseudo, $passwd);
+    $_SESSION['connect'] = 1;
+    $_SESSION['pseudo'] = $pseudo;
+    $_SESSION['id'] = $admin['id'];
+    header("Location: index.php?action=admin&id=".$_SESSION['id']);
+  }
+
   // Affiche la page admin
-  public function adminPage($pseudo, $passwd){
+  public function adminPage(){
     $comments = $this->comment->getCommentsAdmin();
     $tickets = $this->ticket->getTickets();
-    $admin = $this->admin->getAdmin($pseudo, $passwd);
     $view = new View("Admin");
     $view->generate(array('admin' => $admin, 'tickets' => $tickets, 'comments' => $comments));
   }
 
-  public function addChapter(){
-    $addChap = $this->admin->addChapter($chapter, $titleChap, $contentChap);
+  // Page d'ajout de chapitre
+  public function addChapterPage(){
     $view = new View("Addchapter");
-    $view->generate(array('admin' => $admin));
+    $view->generate();
   }
 
+  // Ajout du chapitre
+  public function addChapter($numberChap, $titleChap, $contentChap){
+    $addChap = $this->admin->addChapter($numberChap, $titleChap, $contentChap);
+    $this->adminPage();
+  }
+
+  // Page de modification de chapitre
+  public function updateChapterPage(){
+    $tickets = $this->ticket->getTickets();
+    $view = new View("Updatechapter");
+    $view->generate(array('tickets' => $tickets));
+  }
+
+  // Modification de chapitre
+  public function updateChapter($numberChap, $titleChap, $contentChap, $idChap){
+    $update = $this->admin->updateChap($numberChap, $titleChap, $contentChap, $idChap);
+    $this->adminPage();
+  }
+
+  // Accepter un commentaire signaler
   public function acceptCom($idCom){
     $acceptCom = $this->admin->acceptCom($idCom);
-    header("Location: index.php");
+    header("Location: index.php?action=admin&id=".$_SESSION['id']);
   }
 
+  // Supprimer un commentaire
   public function deleteCom($idCom){
     $deleteCom = $this->admin->deleteCom($idCom);
-    header("Location: index.php");
+    header("Location: index.php?action=admin&id=".$_SESSION['id']);
   }
 
+  // Supprimer un chapitre
   public function deleteChap($idChap){
     $deleteChap = $this->admin->deleteChap($idChap, $idChap);
-    header("Location: index.php");
+    header("Location: index.php?action=admin&id=".$_SESSION['id']);
   }
 }
