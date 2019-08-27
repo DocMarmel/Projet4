@@ -9,11 +9,11 @@
       </div>
       <ul class="menu">
         <li><a href="index.php">Accueil</a></li>
-        <li><a href="/blogP4/view/chapterList.php">Liste des chapitres</a></li>
         <?php if(!isset($_SESSION['id'])){ ?>
-        <li><a href="index.php?action=connection">Connexion</a></li>
+        <li><a href="index.php?action=connexion">Connexion</a></li>
       <?php }else{ ?>
-        <li><a href="index.php?action=deconnexion">Déconnection</a></li>
+        <li><a href="index.php?action=admin&id=<?= $_SESSION['id'] ?>">Profil</a></li>
+        <li><a href="index.php?action=deconnexion">Déconnexion</a></li>
       <?php } ?>
       </ul>
       </div>
