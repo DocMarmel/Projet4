@@ -7,6 +7,7 @@
           <img src="" alt="logo de l'écrivain">
         </a>
       </div>
+      <p id="titleBook">Billet simple pour l'Alaska</p>
       <ul class="menu">
         <li><a href="index.php">Accueil</a></li>
         <?php if(!isset($_SESSION['id'])){ ?>

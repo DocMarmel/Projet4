@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class View{
 
@@ -18,8 +19,7 @@ class View{
     // Génération de la partie spécifique de la vue
     $content = $this->generateFile($this->file, $data);
     // Génération du template commun utilisant la partie spécifique
-    $view = $this->generateFile('view/template.php',
-    array('title' => $this->title, 'content' => $content));
+    $view = $this->generateFile('view/template.php', array('title' => $this->title, 'content' => $content));
     echo $view;
   }
 

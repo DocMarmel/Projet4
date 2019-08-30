@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once 'model/Ticket.php';
 require_once 'view/View.php';
@@ -16,5 +17,10 @@ class ControllerHome{
     $tickets = $this->ticket->getTickets();
     $view = new View("Home");
     $view->generate(array('tickets' => $tickets));
+  }
+
+  public function legalNotice(){
+    $view = new View("Legalnotice");
+    $view->generate($data);
   }
 }

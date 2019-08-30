@@ -40,13 +40,13 @@ class ControllerAdmin{
   // Page d'ajout de chapitre
   public function addChapterPage(){
     $view = new View("Addchapter");
-    $view->generate();
+    $view->generate($data);
   }
 
   // Ajout du chapitre
   public function addChapter($numberChap, $titleChap, $contentChap){
     $addChap = $this->admin->addChapter($numberChap, $titleChap, $contentChap);
-    $this->adminPage();
+    $this->adminPage($data);
   }
 
   // Page de modification de chapitre
@@ -59,7 +59,7 @@ class ControllerAdmin{
   // Modification de chapitre
   public function updateChapter($numberChap, $titleChap, $contentChap, $idChap){
     $update = $this->admin->updateChap($numberChap, $titleChap, $contentChap, $idChap);
-    $this->adminPage();
+    $this->adminPage($data);
   }
 
   // Accepter un commentaire signaler

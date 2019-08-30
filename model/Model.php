@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 abstract class Model{
 
@@ -19,7 +20,7 @@ protected function executeRequest($sql, $params = null){
   // Connexion à la BDD
   private function getDb(){
     if($this->db == null){
-      $this->db = new PDO('mysql:host=localhost;dbname=blog', 'forteroche', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+      $this->db = new PDO('mysql:host=db5000161230.hosting-data.io;dbname=dbs156339', 'dbu182424', '3k2yeqwKcB6f&', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
       return $this->db;
   }

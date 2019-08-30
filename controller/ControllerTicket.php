@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once 'model/Ticket.php';
 require_once 'model/Comment.php';
@@ -24,9 +25,13 @@ class ControllerTicket{
 
 // Ajoute un commentaire à un billet
   public function commented($authorCom, $contentCom, $idChap){
-    // Sauvegarde du commentaire
     $this->comment->addComment($authorCom, $contentCom, $idChap);
     //Actualisation de l'affichage du billet
+    $this->ticket($idChap);
+  }
+
+  public function addReport($idCom, $idChap){
+    $this->comment->report($idCom);
     $this->ticket($idChap);
   }
 }

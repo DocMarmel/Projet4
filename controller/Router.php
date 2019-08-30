@@ -35,7 +35,9 @@ class Router{
           }
         }elseif($_GET['action'] == 'commented'){
           $authorCom = $this->getParameter($_POST, 'author');
+          $authorCom = htmlspecialchars($authorCom);
           $contentCom = $this->getParameter($_POST, 'content');
+          $contentCom = htmlspecialchars($contentCom);
           $idChap = $this->getParameter($_POST, 'id');
           $this->ctrlTicket->commented($authorCom, $contentCom, $idChap);
         }elseif($_GET['action'] == 'report'){
@@ -43,7 +45,7 @@ class Router{
           $idChap = $this->getParameter($_POST, 'idChap');
           $this->ctrlTicket->addReport($idCom, $idChap);
         }elseif($_GET['action'] == 'connexion'){
-          $this->ctrlConnexion->connexion();
+          $this->ctrlConnexion->connexion($data);
         }elseif($_GET['action'] == 'admin'){
           if($_GET['redirect'] == 1){
             $pseudo = $this->getParameter($_POST, 'pseudo');
@@ -61,14 +63,18 @@ class Router{
         }elseif($_GET['action'] == 'addchap' && isset($_SESSION['connect'])){
           $numberChap = $this->getParameter($_POST, 'numChapter');
           $titleChap = $this->getParameter($_POST, 'chapter');
+          $titleChap = htmlspecialchars($titleChap);
           $contentChap = $this->getParameter($_POST, 'contentChap');
+          $contentChap = htmlspecialchars($contentChap);
           $this->ctrlAdmin->addChapter($numberChap, $titleChap, $contentChap);
         }elseif($_GET['action'] == 'updatechapter' && isset($_SESSION['connect'])){
           $this->ctrlAdmin->updatechapterPage();
         }elseif($_GET['action'] == 'updatechap' && isset($_SESSION['connect'])){
           $numberChap = $this->getParameter($_POST, 'numChapter');
           $titleChap = $this->getParameter($_POST, 'chapter');
+          $titleChap = htmlspecialchars($titleChap);
           $contentChap = $this->getParameter($_POST, 'contentChap');
+          $contentChap = htmlspecialchars($contentChap);
           $idChap = $this->getParameter($_POST, 'idChap');
           $this->ctrlAdmin->updateChapter($numberChap, $titleChap, $contentChap, $idChap);
         }elseif($_GET['action'] == 'deconnexion'){
@@ -82,8 +88,8 @@ class Router{
         }elseif($_GET['action'] == 'deletechap' && isset($_SESSION['connect'])){
           $idChap = $this->getParameter($_POST, 'idChap');
           $this->ctrlAdmin->deleteChap($idChap);
-        }elseif($_GET['action'] == 'editchap'){
-
+        }elseif($_GET['action'] == 'legalnotice'){
+          $this->ctrlHome->legalNotice($data);
         }else{
           throw new Exception("Action non valide");
         }

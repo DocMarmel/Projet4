@@ -9,14 +9,14 @@ class Comment extends Model{
 
   // Renvoie la liste des commentaires du billet
   public function getComments($idChap){
-    $sql = "SELECT * FROM commentaires WHERE idChap=? ORDER BY dateCom DESC";
+    $sql = "SELECT idCom, DATE_FORMAT(dateCom, 'Le %d-%m-%Y à %k:%i') AS dateCom, authorCom, contentCom, idChap, report FROM commentaires WHERE idChap=? ORDER BY dateCom DESC";
     $comments = $this->executeRequest($sql, array($idChap));
     return $comments;
   }
 
   // Renvoie la liste des commentaires pour la page admin
     public function getCommentsAdmin(){
-      $sql = "SELECT * FROM commentaires ORDER BY report DESC, dateCom DESC";
+      $sql = "SELECT idCom, DATE_FORMAT(dateCom, 'Le %d-%m-%Y à %k:%i') AS dateCom, authorCom, contentCom, idChap, report FROM commentaires ORDER BY report DESC, dateCom DESC";
       $comments = $this->executeRequest($sql);
       return $comments;
     }

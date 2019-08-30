@@ -1,3 +1,4 @@
+
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,6 +11,7 @@
     <script>
       tinymce.init({
         selector: '#tinymce',
+        language: 'fr_FR'
       });
     </script>
 
@@ -24,8 +26,7 @@
         <?= $content ?>
       </div>
       <footer id="footer">
-        <br><br>
-        Footer à rajouter !!!
+        <p>Copyright © 2019 Jean FORTEROCHE - <a href="index.php?action=legalnotice">Mentions légales</a></p>
       </footer>
     </div>
   </body>
