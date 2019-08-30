@@ -3,25 +3,38 @@ body {
   margin : 0px;
 }
 
+a{
+  text-decoration: none;
+}
+
+/*-------------------------------------------------------*/
+
 /* Navbar */
 .header {
   width: 100%;
-  background: #fff;
-  color: #124191;
   font-weight: 300;
   font-size: 28px;
   height: 100px;
   display: table;
   position: fixed;
   z-index: 999999;
-  background-color: rgba(0,0,0,0.9);
+  background-color: #1A93AC;
+}
+
+#titleBook{
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #F0F0F0;
+  margin: 32px 0 0 18%;
+  vertical-align: middle;
 }
 
 /* Menu */
 .menu{
-  padding:0;
+  padding: 0;
   margin-top: 30px;
-  list-style-type:none;
+  list-style-type: none;
   display: table;
   z-index: 3000;
   display: table-cell;
@@ -31,45 +44,16 @@ body {
 .menu li{
   display: table-cell;
   vertical-align: middle;
-  float:left;
-  cursor: pointer;
 }
 
-.menu li a{
-	padding:9px 20px;
-	display:inline-block;
-	color: white;
-	text-decoration:none;
+.menu a{
+	padding: 9px 20px;
+	display: inline-block;
+	color: #BBB9BE;
+	text-decoration: none;
 	font-size: 15px;
-	font-weight: 400;
+	font-weight: bold;
 	text-transform: uppercase;
-}
-
-/* Submenu */
-.menu ul{
-	position:absolute;
-	left:-9999px;
-	top:-9999px;
-	list-style-type:none;
-}
-.menu li:hover{
-  position:relative;
-  background:#5FD367;
-}
-
-.menu li:hover ul{
-	left:0px;
-	top:30px;
-	background:#5FD367;
-	padding:0px;
-}
-
-.menu li:hover ul li a{
-	padding:5px;
-	display:block;
-	width:168px;
-	text-indent:15px;
-	background-color:#5FD367;
 }
 
 /* Logo header */
@@ -81,17 +65,258 @@ header .logo{
   margin: 15px 0 0 4%;
 }
 
+/*-------------------------------------------------------*/
+
 /* Content */
 #content{
-  padding-top: 100px;
+  padding: 100px 0 100px 0;
+}
+
+/* View Home */
+#imgHome{
+  width: 100%;
+  height: 600px;
+}
+
+#chapHome{
+  text-align: center;
+  color: #1A93AC;
+}
+
+#artHome{
+  display: inline-block;
+  max-width: 45%;
+  margin: 10px 0 0 2%;
+  padding: 10px 1%;
+  border: 1px solid;
+  border-radius: 15px;
+}
+
+#artHome h1{
+  color: #1A93AC;
+}
+
+#artHome a{
+  color: #A0D5E2;
+}
+
+#artHome time{
+  float: right;
+}
+
+#artHome p{
+  float: left;
+}
+
+#artHome span::after{
+  content: '...';
+}
+
+/* View Ticket */
+#artTicket{
+  width: 50%;
+  margin-left: 25%;
 }
 
 /* Comment form */
-#commentContent{
-  width: 50%;
+#commentForm{
+  width: 30%;
+  margin: 50px 0 0 34%;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 0 2% 25px 2%;
 }
 
-/* Connection */
-#form_login{
+#commentForm h1{
+  text-align: center;
+  color: #1A93AC;
+}
+
+#commentForm p{
+  text-align: center;
+  color: #A0D5E2;
+}
+
+form #author{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+form #commentContent{
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.btn{
+  background-color: #1A93AC;
+  color: #F0F0F0;
+  border: none;
+  width: 25%;
+  height: 35px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+#comment{
+  padding: 0 2% 15px 2%;
+  margin: 50px 0 0 19%;
+  border: 1px solid;
+  border-radius: 15px;
+  width: 60%;
+}
+
+#dateCom{
+  float: right;
+  color: #A0D5E2;
+}
+
+#authorCom{
+  color: #1A93AC;
+}
+
+/* View Connexion */
+#loginForm{
+  padding: 25px 0 25px 0;
+  border: 1px solid;
+  border-radius: 15px;
+  width: 25%;
+  margin: 15% 0 0 38%;
+  text-align: center;
+}
+
+#loginForm h1{
+    text-align: center;
+    color: #1A93AC;
+    margin: 0 0 30px 0;
+}
+
+form #pseudo{
+  width: 50%;
+  height: 30px;
+  margin-bottom: 20px
+}
+
+form #passwd{
+  width: 50%;
+  height: 30px;
+  margin-bottom: 20px
+}
+
+/* View Admin */
+#welcome{
+  text-align: center;
+}
+
+.btnAdmin{
+  background-color: #1A93AC;
+  color: #F0F0F0;
+  border: none;
+  width: 15%;
+  height: 35px;
+  border-radius: 5px;
+  cursor:pointer;
+  margin-left: 150px;
+}
+
+.rightBtn{
+  float: right;
+  margin-right: 150px;
+}
+
+.array{
+  text-align: center;
+  color: #1A93AC;
+}
+
+#commentArray{
+  width: 65%;
+  margin: 50px 0 50px 18%;
+}
+
+#commentArray th{
+  padding: 10px;
+}
+
+#chapterArray{
+  width: 48%;
+  margin: 0 0 50px 25%;
   padding-top: 100px;
+}
+
+#chapterArray th{
+  padding: 10px;
+}
+
+.actionBtn{
+  background-color: #1A93AC;
+  color: #F0F0F0;
+  border: none;
+  height: 35px;
+  padding: 0 10px 0 10px;
+  border-radius: 5px;
+  cursor:pointer;
+  margin-bottom: 5px;
+}
+
+/* View AddChapter and UpdateChapter*/
+#chapter{
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin: 3% 0 0 25%;
+  padding: 15px;
+  color: #1A93AC;
+}
+
+#chapterNum{
+  float: right;
+}
+
+#chapterName{
+  margin-bottom: 25px;
+}
+
+#tinymce{
+  margin-top: 10px;
+}
+
+div.tox.tox-tinymce{
+  height: 500px !important;
+  margin-top: 10px;
+}
+
+/* View LegaleNotice */
+#legaleNotice{
+  width: 50%;
+  margin: 25px 0 0 25%;
+}
+
+/* View Error */
+#error{
+  width: 25%;
+  margin: 10% 0 0 37%;
+  border: 1px solid black;
+  border-radius: 15px;
+  text-align: center;
+  color: red;
+}
+
+
+/*-------------------------------------------------------*/
+
+/* Footer */
+#footer{
+  text-align: center;
+  color: #F0F0F0;
+  background-color: #1A93AC;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#footer a{
+  font-weight: bold;
+  color: #BBB9BE;
 }
