@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=100%; min-scale=1.0; max-scale=1.0">
     <link rel="stylesheet" href="public/css/style.css">
+    <link rel="icon" href="public/img/favicon.png">
     <!-- CDN TinyMCE -->
     <script src="public/tinymce/tinymce.min.js"></script>
     <script>
