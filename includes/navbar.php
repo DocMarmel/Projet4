@@ -4,7 +4,7 @@
     <div class="nav">
       <div class="logo">
         <a href="index.php">
-          <img src="" alt="logo de l'écrivain">
+          <img src="public/img/logoForteroche.png" alt="logo de l'écrivain">
         </a>
       </div>
       <p id="titleBook">Billet simple pour l'Alaska</p>
