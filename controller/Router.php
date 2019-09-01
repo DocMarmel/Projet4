@@ -63,18 +63,14 @@ class Router{
         }elseif($_GET['action'] == 'addchap' && isset($_SESSION['connect'])){
           $numberChap = $this->getParameter($_POST, 'numChapter');
           $titleChap = $this->getParameter($_POST, 'chapter');
-          $titleChap = htmlspecialchars($titleChap);
           $contentChap = $this->getParameter($_POST, 'contentChap');
-          $contentChap = htmlspecialchars($contentChap);
           $this->ctrlAdmin->addChapter($numberChap, $titleChap, $contentChap);
         }elseif($_GET['action'] == 'updatechapter' && isset($_SESSION['connect'])){
           $this->ctrlAdmin->updatechapterPage();
         }elseif($_GET['action'] == 'updatechap' && isset($_SESSION['connect'])){
           $numberChap = $this->getParameter($_POST, 'numChapter');
           $titleChap = $this->getParameter($_POST, 'chapter');
-          $titleChap = htmlspecialchars($titleChap);
           $contentChap = $this->getParameter($_POST, 'contentChap');
-          $contentChap = htmlspecialchars($contentChap);
           $idChap = $this->getParameter($_POST, 'idChap');
           $this->ctrlAdmin->updateChapter($numberChap, $titleChap, $contentChap, $idChap);
         }elseif($_GET['action'] == 'deconnexion'){
